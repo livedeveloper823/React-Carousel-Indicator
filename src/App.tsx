@@ -1,4 +1,10 @@
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useState } from 'react';
+
 function App() {
+  const [activeIndex, setActiveIndex] = useState(0)
+
   const carouselSlidesData = [
     {
       content:
@@ -40,12 +46,64 @@ function App() {
 
   const CarouselLeftArrow = () => {
     return (
-      <a href="#"></a>
+      <a href="#" className="absolute top-[50%] block text-color-[#111] cursor-pointer opacity-75 translate-y-1/2      transition-all right-[32px]"><span><ArrowBackIosNewIcon /></span></a>
     )
   }
+  const CarouselRightArrow = () => {
+    return (
+      <a href="#" className="absolute top-[50%] block text-color-[#111] cursor-pointer opacity-75 translate-y-1/2 transition-all left-[32px]"><span><ArrowForwardIosIcon /></span></a>
+    )
+  }
+
+  const CarouselIndicator = () => {
+    return (
+      <li>
+        <a href=""/>
+      </li>
+    )
+  }
+  const CarouselSlide = () => {
+    return(
+      <li>
+        
+      </li>
+    )
+  }
+
+
+  const goToSlide = (index: number) => {
+    return setActiveIndex(index)
+  }
+  const goToPrevSlide = (e: Event) => {
+    e.preventDefault()
+    let index: number = activeIndex
+    const slides = []
+    const slideLength = slides.length
+    if (index < 1) {
+      index = slideLength
+    }
+    --index
+    setActiveIndex(index)
+  }
+
+  const goToNextSlide = (e: Event) => {
+    e.preventDefault()
+    let index: number = activeIndex
+    const slides = []
+    const slideLength = slides.length - 1
+    if (index === slideLength) {
+      index = -1
+    }
+    ++index
+    setActiveIndex(index)
+  }
   return (
-    <>
-    </>
+    <div>
+      <CarouselLeftArrow/>
+      <ul>
+
+      </ul>
+    </div>
   )
 }
 
